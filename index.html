@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Ejercicios en JavaScript</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Ejercicios en JavaScript</h1>
+  <button onclick="ejercicio1()">Ejercicio 1: Caja de productos</button>
+  <button onclick="ejercicio2()">Ejercicio 2: Números aleatorios</button>
+
+  <script>
+    function ejercicio1() {
+        let precio_total = 0;
+
+        function caja() {
+            function imprimaProducto(nombre, precio) {
+                document.write("EL NOMBRE DEL PRODUCTO ES: " + nombre + "<br>");
+                document.write("EL PRECIO DEL PRODUCTO ES: " + precio + "<br>");
+            }
+
+            while (true) {
+                let nombre = prompt("Digite el nombre del producto:");
+                let precio = parseFloat(prompt("Digite el precio del producto:"));
+
+                if (isNaN(precio) || precio < 0) {
+                    document.write("Por favor, ingrese un precio válido.<br>");
+                    continue;
+                }
+
+                imprimaProducto(nombre, precio);
+                precio_total += precio;
+
+                let ingresar_mas = prompt("¿Desea ingresar más artículos? (Sí/No):").toUpperCase();
+                if (ingresar_mas === "NO") {
+                    break;
+                }
+            }
+        }
+
+        caja();
+        document.write("El total de la compra es: " + precio_total + "<br>");
+    }
+
+    function ejercicio2() {
+        function numAleatorio() {
+            let num;
+            do {
+                num = Math.floor(Math.random() * (131 - 100)) + 100;
+            } while (num === 110 || num === 115 || num === 120);
+            return num;
+        }
+
+        function numeros() {
+            let esPar = true;
+            for (let i = 0; i < 10; i++) {
+                let num;
+                do {
+                    num = numAleatorio();
+                } while ((esPar && num % 2 !== 0) || (!esPar && num % 2 === 0));
+
+                document.write(num + "<br>");
+                esPar = !esPar;
+            }
+        }
+
+        numeros();
+    }
+  </script>
+</body>
+</html>
